@@ -48,13 +48,13 @@ while True:
         audio = r.listen(source)
         try:
             text = r.recognize_google(audio)
-            p = text.lower()
+            p = text.upper()
             print(" \n\t You said : {}".format(p))
 
         except:
             print("\n Sorry could not recognize what you said")
 
-    print("\n------------------------------------ \n")
+    print("\n------------------------------------- \n")
     break
 
 list_all_ext = [x+y for x in [p] for y in ['.php', '.cpp', '.jpeg', '.mp3', '.docx', '.pdf', '.xlsx', '.pptx', '.py',
@@ -105,20 +105,21 @@ for i in list_all_ext:
    else:
       pass     # pass comment is used to not print any value and simply blank
 
-# # this loop for [C:\.] disk
-# for i in list_all_ext:
-#    if (find_files(i, "C:\.") != []):
-#       print(find_files(i, "C:\."))
-#    elif (find_files(i, "C:\.") == []):
-#       a = False
-#       count = count+1
-#       pass
-#    else:
-#       pass     # pass comment is used to not print any value and simply blank
+# this loop for [C:\.] disk
+for i in list_all_ext:
+   if (find_files(i, "C:\.") != []):
+      print(find_files(i, "C:\."))
+   elif (find_files(i, "C:\.") == []):
+      a = False
+      count3 = count3+1
+      pass
+   else:
+      pass     # pass comment is used to not print any value and simply blank
 
-if (count1 == len(list_all_ext) and count2 == len(list_all_ext)):
+if (count1 == len(list_all_ext) and count2 == len(list_all_ext) and count3 == len(list_all_ext)):
    # print(count1)
    # print(count2)
+   # print(count3)
    print("\n No Matching Results Found")
    print("\n =========================== No Matching Result found ==============================")
    print("")
