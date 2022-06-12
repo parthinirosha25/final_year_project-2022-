@@ -26,6 +26,7 @@ print("")
 # introduction
 print("  =============================================== Digital voice Assistant tool!! ================================================")
 engine.say('Hi, Its really good to hear from you!.....')
+pyttsx3.speak("hello all")
 
 # ----------------------------------------------
 # input from user through voice
@@ -49,6 +50,7 @@ while True:
     print("\n------------------------------------- \n")
     break
 
+# ------------ For GUI --------------------------------------
 class Gui:    #class for GUI
     def __init__(self):     # create 2 obj is layout and window
         # layout contails all rows content in the list format (text box, input box, voice icon, radio button, buttons, etc)
@@ -62,8 +64,8 @@ class Gui:    #class for GUI
                          sg.FolderBrowse('Browse'),                      #browse dir path
                          sg.Button('Re-Index', size=(10,1), key="_INDEX_"),              # indexing method
                          sg.Button('Search', size=(10,1), bind_return_key=True, key="_SEARCH_")],      # bind_return_key=True(if we press etr key this btn will trigger
-                        [sg.Button('Speak',size=(9,1), key="SPEAK"),
-                         sg.Input(size=(45,2))],
+                        [sg.Button('Speak',size=(9,1), key="_SPEAK_"),   # speak button
+                         sg.Input(size=(45,2))],                         # Speech input
                         [sg.Output(size=(100,30))]]                       #size of the output screen
 
         self.window = sg.Window('Quick File Search').Layout(self.layout)
@@ -91,9 +93,9 @@ class SearchEngine:
         with open('file_index.pkl','wb') as f:      # open binary format writing files
             pickle.dump(self.file_index, f)         # save new index
 
-    # Speak button function
-    def speak_now(self, values):
-        speak_value = values['SPEAK']
+    # # Speak button function
+    # def speak_now(self, values):
+    #     speak_value = values['SPEAK']
 
     def load_existing_index(self):
         ''' load existing index values (no need to create new index again and again ) '''
@@ -194,8 +196,9 @@ def main():
             print('>> New Index has been Created')
             print()
 
-        if event == 'SPEAK':
-            s.speak_now(Values)                 # calling speak_now func()
+        if event == '_SPEAK_':
+            s.speak_now(Values)                # calling speak_now func()
+            print("values {:,d} : ".format(s.p))
 
         if event == '_SEARCH_':
             s.search(values)
